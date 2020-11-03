@@ -33,13 +33,13 @@ def exam_5e_data():
 
     plt.xlabel('Time (min)')
     plt.ylabel('C (mol/L)')
-    l1=plt.plot(ex5edata[0],ex5edata[1], label='200°C')
+    plt.plot(ex5edata[0],ex5edata[1], label='200°C')
 
     #plt.figure(2)
-    l2=plt.plot(ex5edata[0],ex5edata[2],label='300°C')
+    plt.plot(ex5edata[0],ex5edata[2],label='300°C')
 
     #plt.figure(3)
-    l3=plt.plot(ex5edata[0],ex5edata[3],label='400°C')
+    plt.plot(ex5edata[0],ex5edata[3],label='400°C')
     plt.legend()
     plt.show()
 
@@ -54,18 +54,18 @@ def exam_3a_data():
 
     plt.xlabel('Time (min)')
     plt.ylabel('C (mol/L)')
-    l1=plt.plot(e3a[0],e3a[1], label='1.00 mol/L')
+    plt.plot(e3a[0],e3a[1], label='1.00 mol/L')
        
-    l2=plt.plot(e3a[0],e3a[2],label='2.00 mol/L')
-    l3=plt.plot(e3a[0],e3a[3],label='3.00 mol/L')
+    plt.plot(e3a[0],e3a[2],label='2.00 mol/L')
+    plt.plot(e3a[0],e3a[3],label='3.00 mol/L')
     plt.legend()
 
     plt.figure(2)
     plt.xlabel('Time (min)')
     plt.ylabel('dC/dt (mol/Ls)')
-    ld=plt.plot( na.diff_desc_fd(e3a[0],e3a[1])[0], na.diff_desc_fd(e3a[0],e3a[1])[1] ,label='1.00 mol/L') 
-    ld=plt.plot( na.diff_desc_fd(e3a[0],e3a[2])[0], na.diff_desc_fd(e3a[0],e3a[2])[1] ,label='2.00 mol/L') 
-    ld=plt.plot( na.diff_desc_fd(e3a[0],e3a[3])[0], na.diff_desc_fd(e3a[0],e3a[3])[1] ,label='3.00 mol/L') 
+    plt.plot( na.diff_desc_fd(e3a[0],e3a[1])[0], na.diff_desc_fd(e3a[0],e3a[1])[1] ,label='1.00 mol/L') 
+    plt.plot( na.diff_desc_fd(e3a[0],e3a[2])[0], na.diff_desc_fd(e3a[0],e3a[2])[1] ,label='2.00 mol/L') 
+    plt.plot( na.diff_desc_fd(e3a[0],e3a[3])[0], na.diff_desc_fd(e3a[0],e3a[3])[1] ,label='3.00 mol/L') 
     plt.legend()
     plt.show()
 

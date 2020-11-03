@@ -81,10 +81,9 @@ def diff_desc_fd(x,y):
     returns two lists bufx and buffer -- bufx - time without the last point -- buffer - slope between each point.
     """
 
-    buffer=[]
+    buffer=[(y[i+1]-y[i])/(x[i+1]-x[i]) for i in range(len(x)-1)]
     
-    for i in range(len(x)-1):
-        buffer.append((y[i+1]-y[i])/(x[i+1]-x[i]))
+    
     
     bufx=x[0:-1]
     
@@ -94,11 +93,9 @@ def diff_desc_fd(x,y):
 def diff_dess_fpf(x,y):
 
     dx=x[1]-x[0]
-    diff=[]
+    diff=[(1/(12*dx))*(y[i]-8*y[i+1]+8*y[i+2]-y[i+3]) for i in range(len(x)-3)]
 
-    for i in range(len(x)-3):
-        a=(1/(12*dx))*(y[i]-8*y[i+1]+8*y[i+2]-y[i+3])
-        diff.append(a)
+    
 
     return diff
         
