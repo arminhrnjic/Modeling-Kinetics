@@ -26,14 +26,15 @@ def func_example4(x):
     return x
     
 def diff_fd(func, x, dx):
-    """
-    Forward difference method for differentiation. 
-    
-    args:
-    func - Function for the differentiation
-    x - Value of the fanction to estimate differential 
-    dx - Value of the forward difference 
+    """Forward difference method for derivating functions
 
+    Args:
+        func ([function]): [Function that you want to derivate]
+        x ([float]): [Specific value at which you need to evaluate a derived function]
+        dx ([float]): [deriving factor (replacement for infinitesimal value) ex. 0.01 ]
+
+    Returns:
+        [float]: [Evaluation of the derivative of the funciton (func) at the value (x)]
     """
     return (func(x+dx)-func(x))/dx
 
@@ -94,8 +95,6 @@ def diff_dess_fpf(x,y):
 
     dx=x[1]-x[0]
     diff=[(1/(12*dx))*(y[i]-8*y[i+1]+8*y[i+2]-y[i+3]) for i in range(len(x)-3)]
-
-    
 
     return diff
         
@@ -260,6 +259,7 @@ if __name__ == "__main__":
     solve_secant(func_example1,0.5,0.75,0.001,100) # Example 6e on the page 75 range [0,1]
     solve_secant(func_example1,3,5,0.00001,100) # Example 6e on the page 75 range [3,5]
     solve_newton(func_example1,1,0.00001,100) # Example 6e on the page 75 with initial guess of 1
+    
 
     print('Function 3 is e^x/3+x*x')
     print('Forward difference method result for function 3:')

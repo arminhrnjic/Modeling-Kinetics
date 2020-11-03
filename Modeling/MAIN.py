@@ -51,7 +51,7 @@ def exam_3a_data():
 
     e3a=np.array(e3a_data)
     
-
+    plt.figure(1)
     plt.xlabel('Time (min)')
     plt.ylabel('C (mol/L)')
     plt.plot(e3a[0],e3a[1], label='1.00 mol/L')
@@ -62,10 +62,48 @@ def exam_3a_data():
 
     plt.figure(2)
     plt.xlabel('Time (min)')
-    plt.ylabel('dC/dt (mol/Ls)')
-    plt.plot( na.diff_desc_fd(e3a[0],e3a[1])[0], na.diff_desc_fd(e3a[0],e3a[1])[1] ,label='1.00 mol/L') 
-    plt.plot( na.diff_desc_fd(e3a[0],e3a[2])[0], na.diff_desc_fd(e3a[0],e3a[2])[1] ,label='2.00 mol/L') 
-    plt.plot( na.diff_desc_fd(e3a[0],e3a[3])[0], na.diff_desc_fd(e3a[0],e3a[3])[1] ,label='3.00 mol/L') 
+    plt.ylabel('-dC/dt (mol/Ls)')
+    time1=na.diff_desc_fd(e3a[0],e3a[1])[0]
+    time2=na.diff_desc_fd(e3a[0],e3a[2])[0]
+    time3=na.diff_desc_fd(e3a[0],e3a[1])[0]
+    rate1=[-i for i in na.diff_desc_fd(e3a[0],e3a[1])[1]]
+    rate2=[-i for i in na.diff_desc_fd(e3a[0],e3a[2])[1]]
+    rate3=[-i for i in na.diff_desc_fd(e3a[0],e3a[3])[1]]
+    plt.plot( na.diff_desc_fd(e3a[0],e3a[1])[0], rate1 ,label='1.00 mol/L') 
+    plt.plot( na.diff_desc_fd(e3a[0],e3a[2])[0], rate2 ,label='2.00 mol/L') 
+    plt.plot( na.diff_desc_fd(e3a[0],e3a[3])[0], rate3 ,label='3.00 mol/L') 
+    print(rate1[0],rate2[0],rate3[0])
+
+    plt.figure(3)
+    plt.xlabel('t (min)')
+    plt.ylabel('ln(rate)')
+    ln_of_rate1=[np.log(i) for i in rate1]
+    ln_of_rate2=[np.log(i) for i in rate2]
+    ln_of_rate3=[np.log(i) for i in rate3]
+    plt.plot(time1, ln_of_rate1, label='1.00 mol/L')
+    plt.plot(time2, ln_of_rate2, label='2.00 mol/L')
+    plt.plot(time3, ln_of_rate3, label='3.00 mol/L')
+
+    suma= na.diff_desc_fd(time1,ln_of_rate1)[1] + na.diff_desc_fd(time2,ln_of_rate2)[1] +na.diff_desc_fd(time3,ln_of_rate3)[1]
+    rate_constant=sum(suma)/len(suma)
+
+    time_analytical=[i for i in range(181)]
+    concentration_reactant_analytical1=[1*np.exp(-0.0272*i) for i in range(181)]
+    concentration_reactant_analytical2=[1*np.exp(-0.0272*i) for i in range(181)]
+    concentration_reactant_analytical3=[1*np.exp(-0.0272*i) for i in range(181)]
+
+    concentration_product_analytical1=[1-i for i in concentration_reactant_analytical1]
+
+    plt.figure(4)
+    plt.xlabel('Time (min)')
+    plt.ylabel('C (mol/L)')
+    plt.plot(time_analytical,concentration_reactant_analytical1,label='Reactant 1.00 mol/L')
+    plt.plot(time_analytical,concentration_product_analytical1,label='Prodcuts 1.00 mol/L')
+
+
+
+
+
     plt.legend()
     plt.show()
 
